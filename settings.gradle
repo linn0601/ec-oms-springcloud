@@ -1,0 +1,8 @@
+rootProject.name = 'ec-oms-springcloud'
+
+include 'ec-oms-account'
+include 'ec-oms-goods'
+include 'ec-oms-order'
+include 'ec-oms-logistics'
+include 'ec-oms-goods'
+

@@ -1,0 +1,53 @@
+buildscript {
+    ext {
+        springCloudVersion = '2020.0.2'
+        springBootVersion = '2.4.13'
+        springCloudAlibabaVersion = '2021.1'
+    }
+
+    dependencies {
+        classpath("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
+        classpath("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version "${springBootVersion}"
+}
+
+group 'org.linn'
+version '1.0-SNAPSHOT'
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    sourceCompatibility = 11
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'org.springframework.boot'
+
+    dependencies {
+        implementation group: 'com.google.code.gson', name: 'gson', version: '2.9.0'
+        implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+        implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+        implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+
+        testImplementation('org.springframework.boot:spring-boot-starter-test') {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+}
+
