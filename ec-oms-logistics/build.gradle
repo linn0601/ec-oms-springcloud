@@ -8,14 +8,6 @@ dependencies {
     runtimeOnly('org.postgresql:postgresql')
 }
 
-bootJar {
-    enabled = false
-}
-
-jar {
-    enabled = true
-}
-
 test {
     useJUnitPlatform()
 }
