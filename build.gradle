@@ -1,8 +1,8 @@
 buildscript {
     ext {
-        springCloudVersion = '2020.0.2'
-        springBootVersion = '2.4.13'
-        springCloudAlibabaVersion = '2021.1'
+        springCloudVersion = '2021.0.1'
+        springBootVersion = '2.6.3'
+        springCloudAlibabaVersion = '2021.0.1.0'
     }
 
     dependencies {

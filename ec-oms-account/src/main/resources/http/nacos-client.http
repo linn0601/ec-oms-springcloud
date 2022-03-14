@@ -1,0 +1,2 @@
+### 查询服务实例信息
+GET http://localhost:8080/nacos/get

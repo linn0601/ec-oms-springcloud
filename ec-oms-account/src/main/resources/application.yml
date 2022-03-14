@@ -1,9 +1,9 @@
 server:
-  port: 8080
+  port: 8000
 
 spring:
   application:
-    name: cloud-payment-service
+    name: ec-oms-account
 
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
@@ -24,3 +24,20 @@ spring:
         show_sql: true
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+
+
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: 127.0.0.1:8848
+        namespace: fa4796a0-246b-4ce7-8391-4652dd8047ef
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
