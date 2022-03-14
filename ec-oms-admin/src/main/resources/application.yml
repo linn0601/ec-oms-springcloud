@@ -1,0 +1,22 @@
+server:
+  port: 7001
+
+spring:
+  application:
+    name: ec-oms-admin
+  cloud:
+    nacos:
+      discovery:
+        namespace: fa4796a0-246b-4ce7-8391-4652dd8047ef
+        enabled: true
+        server-addr: localhost:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
