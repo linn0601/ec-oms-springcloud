@@ -6,8 +6,8 @@ buildscript {
     }
 
     dependencies {
-        classpath("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
-        classpath("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+        /* classpath("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
+         classpath("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")*/
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
@@ -20,9 +20,6 @@ group 'org.linn'
 version '1.0-SNAPSHOT'
 
 allprojects {
-    apply plugin: 'java'
-    apply plugin: 'idea'
-    sourceCompatibility = 11
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
@@ -36,8 +33,11 @@ allprojects {
 }
 
 subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'org.springframework.boot'
+    sourceCompatibility = 11
 
     dependencies {
         implementation group: 'com.google.code.gson', name: 'gson', version: '2.9.0'
@@ -47,6 +47,12 @@ subprojects {
 
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
         }
     }
 }

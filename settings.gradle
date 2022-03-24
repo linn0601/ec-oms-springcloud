@@ -8,4 +8,5 @@ include 'ec-oms-goods'
 include 'ec-oms-core'
 include 'ec-oms-admin'
 include 'ec-oms-authority-center'
+include 'ec-oms-gateway'
 
