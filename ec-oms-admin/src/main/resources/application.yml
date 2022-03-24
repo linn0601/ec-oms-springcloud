@@ -4,6 +4,7 @@ server:
 spring:
   application:
     name: ec-oms-admin
+
   cloud:
     nacos:
       discovery:

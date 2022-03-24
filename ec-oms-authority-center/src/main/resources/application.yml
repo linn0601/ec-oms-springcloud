@@ -1,0 +1,42 @@
+server:
+  port: 7002
+
+spring:
+  application:
+    name: ec-oms-authorization-center
+
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:postgresql://127.0.0.1:5432/ec-marketing
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        show_sql: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+
+  cloud:
+    nacos:
+      discovery:
+        namespace: fa4796a0-246b-4ce7-8391-4652dd8047ef
+        enabled: true
+        server-addr: localhost:8848
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
