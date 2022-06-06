@@ -6,8 +6,6 @@ buildscript {
     }
 
     dependencies {
-        /* classpath("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
-         classpath("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")*/
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
@@ -16,14 +14,14 @@ plugins {
     id 'org.springframework.boot' version "${springBootVersion}"
 }
 
-group 'org.linn'
-version '1.0-SNAPSHOT'
-
 allprojects {
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
     }
+
+    group 'org.linn'
+    version '1.0-SNAPSHOT'
 
     repositories {
         mavenLocal()
