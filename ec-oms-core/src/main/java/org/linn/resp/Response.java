@@ -1,4 +1,4 @@
-package org.linn.web;
+package org.linn.resp;
 
 import java.io.Serializable;
 

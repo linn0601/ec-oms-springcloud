@@ -1,4 +1,4 @@
-package org.linn.web;
+package org.linn.resp;
 
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;

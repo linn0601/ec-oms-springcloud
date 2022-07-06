@@ -2,7 +2,7 @@ package org.linn.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Collections;
-import org.linn.web.JsonHttpMessageConverter;
+import org.linn.resp.JsonHttpMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
