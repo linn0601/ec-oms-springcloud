@@ -36,6 +36,9 @@ public class GlobExceptionAdvice extends ResponseEntityExceptionHandler {
 		return response;
 	}
 
+	/**
+	 * 使用注解对参数进行校验时未通过的处理逻辑
+	 */
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 																  HttpHeaders headers,
