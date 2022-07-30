@@ -1,9 +1,15 @@
 server:
   port: 7001
+  servlet:
+    context-path: /ec-oms-admin
 
 spring:
   application:
     name: ec-oms-admin
+  security:
+    user:
+      name: linn
+      password: linn
 
   cloud:
     nacos:
@@ -11,13 +17,23 @@ spring:
         namespace: fa4796a0-246b-4ce7-8391-4652dd8047ef
         enabled: true
         server-addr: localhost:8848
+        metadata:
+          management:
+            context-path: ${server.servlet.context-path}/actuator
+          user.name: linn
+          user.password: linn
+
+  thymeleaf:
+    check-template: false
+    check-template-location: false
 
 management:
+  endpoint:
+    #监控端点配置为全覆盖
+    health:
+      show-details: ALWAYS
+  #暴露所有服务端点
   endpoints:
     web:
       exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: always
-
+        include: "*"

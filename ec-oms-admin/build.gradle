@@ -3,6 +3,7 @@ dependencies {
     implementation group: 'de.codecentric', name: 'spring-boot-admin-starter-server', version: '2.6.2'
     implementation project(":ec-oms-core")
     implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-security')
     implementation('org.springframework.boot:spring-boot-starter-actuator')
 }
 
