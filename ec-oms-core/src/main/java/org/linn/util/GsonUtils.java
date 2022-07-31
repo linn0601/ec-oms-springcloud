@@ -1,8 +1,5 @@
 package org.linn.util;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.gson.ExclusionStrategy;
-import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
@@ -34,25 +31,12 @@ public final class GsonUtils {
 
 	static {
 
-		ExclusionStrategy serializationExclusionStrategy = new ExclusionStrategy() {
-			@Override
-			public boolean shouldSkipField(FieldAttributes f) {
-				return f.getAnnotation(JsonIgnore.class) != null;
-			}
-
-			@Override
-			public boolean shouldSkipClass(Class<?> clazz) {
-				return false;
-			}
-		};
-
 		gson = new GsonBuilder()
 						 .setDateFormat(DATETIME_FORMAT)
 						 .registerTypeAdapter(LocalDateTime.class, getLocalDateTimeJsonSerializer())
 						 .registerTypeAdapter(LocalDateTime.class, getLocalDateTimeJsonDeserializer())
 						 .registerTypeAdapter(LocalDate.class, getLocalDateJsonSerializer())
 						 .registerTypeAdapter(LocalDate.class, getLocalDateJsonDeserializer())
-						 .addSerializationExclusionStrategy(serializationExclusionStrategy)
 						 .create();
 
 		simpleGson = new GsonBuilder()
@@ -60,7 +44,6 @@ public final class GsonUtils {
 						.registerTypeAdapter(LocalDateTime.class, getLocalDateTimeJsonDeserializer())
 						.registerTypeAdapter(LocalDate.class, getLocalDateJsonSerializer())
 						.registerTypeAdapter(LocalDate.class, getLocalDateJsonDeserializer())
-						.addSerializationExclusionStrategy(serializationExclusionStrategy)
 						.create();
 	}
 
