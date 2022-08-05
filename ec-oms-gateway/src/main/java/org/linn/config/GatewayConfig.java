@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
  * 用于将网关路由配置放置到nacos配置中心
  * <li>当网关配置发生变化时nacos会通知gateway刷新配置</li>
  */
-@Configuration
+@Configuration("gatewayConfig")
 public class GatewayConfig {
 
 	/**

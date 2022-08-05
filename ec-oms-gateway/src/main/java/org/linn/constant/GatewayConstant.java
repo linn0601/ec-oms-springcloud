@@ -18,5 +18,12 @@ public class GatewayConstant {
 	/**
 	 * 从授权中心获取token的url
 	 */
-	public static final String AUTHORITY_CENTER_TOKEN_URL= "/auth/token";
+	public static final String AUTHORITY_CENTER_TOKEN_URL_FORMAT =
+		"http://%s:%s/ec-oms-authorization-center/auth/token";
+
+	/**
+	 * 去授权中心注册并拿到token的 uri 格式化接口
+	 */
+	public static final String AUTHORITY_CENTER_REGISTER_URL_FORMAT =
+		"http://%s:%s/ec-oms-authorization-center/auth/register";
 }

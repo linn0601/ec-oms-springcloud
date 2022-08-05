@@ -15,7 +15,6 @@ import javax.annotation.PostConstruct;
 import org.apache.commons.collections4.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
@@ -24,6 +23,7 @@ import org.springframework.stereotype.Component;
  * nacos
  */
 @Component
+// 另一bean初始化后再去初始化，一个依赖注解
 @DependsOn(value = { "gatewayConfig" })
 public class DynamicRouteServiceLister {
 
@@ -36,12 +36,17 @@ public class DynamicRouteServiceLister {
 	 */
 	private ConfigService configService;
 
-	@Autowired
 	private GatewayConfig gatewayConfig;
 
-	@Autowired
 	private DynamicRouteService dynamicRouteService;
 
+	public DynamicRouteServiceLister(DynamicRouteService dynamicRouteService) {
+		this.dynamicRouteService = dynamicRouteService;
+	}
+
+	/**
+	 * 初始化nacos config
+	 */
 	private ConfigService initConfigService() {
 		try {
 			Properties properties = new Properties();
@@ -52,13 +57,12 @@ public class DynamicRouteServiceLister {
 		}
 		catch (Exception e) {
 			logger.error("init gateway nacos config error: [{}]", e.getMessage(), e);
-			return null;
 		}
+		return null;
 	}
 
 	/**
 	 * Bean在容器中构建完成后会执行init()
-	 *
 	 * dateId、groupId
 	 */
 	@SuppressWarnings("UnstableApiUsage")
@@ -81,13 +85,13 @@ public class DynamicRouteServiceLister {
 						dynamicRouteService.addRouteDefinition(routeDefinition);
 					}
 				}
-
-				dynamicRouteByNacosListener(gatewayConfig.getNacosDataId(), gatewayConfig.getNacosGroup());
 			}
 		}
 		catch (Exception e) {
 			logger.error("getaway route init has some error: [{}]", e.getMessage(), e);
 		}
+		// 设置监听器，当dataId发生变更时进行同步
+		dynamicRouteByNacosListener(gatewayConfig.getNacosDataId(), gatewayConfig.getNacosGroup());
 	}
 
 	/**
@@ -96,7 +100,7 @@ public class DynamicRouteServiceLister {
 	@SuppressWarnings("UnstableApiUsage")
 	private void dynamicRouteByNacosListener(String dataId, String group) {
 		try {
-			// 当指定配置发生变化时进行通知
+			// 当指定配置发生变化时进行通知，增加一个监听器
 			configService.addListener(dataId, group, new Listener() {
 				@Override
 				public Executor getExecutor() {
