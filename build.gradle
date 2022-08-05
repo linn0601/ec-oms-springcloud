@@ -1,8 +1,8 @@
 buildscript {
     ext {
-        springCloudVersion = '2021.0.3'
-        springBootVersion = '2.6.8'
-        springCloudAlibabaVersion = '2021.0.1.0'
+        springCloudVersion = 'Hoxton.SR12'
+        springBootVersion = '2.3.12.RELEASE'
+        springCloudAlibabaVersion = '2.2.8.RELEASE'
     }
 
     dependencies {
