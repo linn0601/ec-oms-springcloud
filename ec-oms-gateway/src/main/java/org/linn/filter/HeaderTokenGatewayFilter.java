@@ -13,13 +13,13 @@ import reactor.core.publisher.Mono;
  * <li>创建一个类，实现GatewayFilter 接口</li>
  * <li>在factor中加入过滤器</li>
  */
-public class HeadTokenGatewayFilter implements GatewayFilter, Ordered {
+public class HeaderTokenGatewayFilter implements GatewayFilter, Ordered {
 
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 		// 从http Header中寻找key 为token
 		String name = exchange.getRequest().getHeaders().getFirst("token");
-		if (StringUtils.equals("ly", name)) {
+		if (StringUtils.equals("linn", name)) {
 			return chain.filter(exchange);
 		}
 		// 标记无权限

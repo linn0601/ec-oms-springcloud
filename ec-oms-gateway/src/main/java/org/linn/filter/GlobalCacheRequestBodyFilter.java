@@ -19,6 +19,7 @@ import reactor.core.publisher.Mono;
  * 缓存请求body的全局过滤器 spring webflux
  */
 @Component
+@SuppressWarnings("all")
 public class GlobalCacheRequestBodyFilter implements GlobalFilter, Ordered {
 
 	private static final Logger logger = LoggerFactory.getLogger(GlobalCacheRequestBodyFilter.class);
@@ -44,7 +45,6 @@ public class GlobalCacheRequestBodyFilter implements GlobalFilter, Ordered {
 						   () -> Flux.just(dataBuffer.slice(0, dataBuffer.readableByteCount())));
 					   // 重新包装创建http
 					   ServerHttpRequest mutatedRequest = new ServerHttpRequestDecorator(exchange.getRequest()) {
-
 						   @Override
 						   public Flux<DataBuffer> getBody() {
 							   return cachedFlux;

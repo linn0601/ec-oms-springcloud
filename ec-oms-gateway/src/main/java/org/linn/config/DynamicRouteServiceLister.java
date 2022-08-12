@@ -35,12 +35,12 @@ public class DynamicRouteServiceLister {
 	 * nacos 配置服务客户端
 	 */
 	private ConfigService configService;
+	private final GatewayConfig gatewayConfig;
+	private final DynamicRouteService dynamicRouteService;
 
-	private GatewayConfig gatewayConfig;
-
-	private DynamicRouteService dynamicRouteService;
-
-	public DynamicRouteServiceLister(DynamicRouteService dynamicRouteService) {
+	public DynamicRouteServiceLister(GatewayConfig gatewayConfig,
+									 DynamicRouteService dynamicRouteService) {
+		this.gatewayConfig = gatewayConfig;
 		this.dynamicRouteService = dynamicRouteService;
 	}
 
@@ -62,8 +62,7 @@ public class DynamicRouteServiceLister {
 	}
 
 	/**
-	 * Bean在容器中构建完成后会执行init()
-	 * dateId、groupId
+	 * Bean在容器中构建完成后会执行init() dateId、groupId
 	 */
 	@SuppressWarnings("UnstableApiUsage")
 	@PostConstruct
