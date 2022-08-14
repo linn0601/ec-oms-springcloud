@@ -4,6 +4,9 @@ version '1.0-SNAPSHOT'
 dependencies {
     implementation project(':ec-oms-core')
     implementation('org.springframework.boot:spring-boot-starter-web')
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 
 }
 
