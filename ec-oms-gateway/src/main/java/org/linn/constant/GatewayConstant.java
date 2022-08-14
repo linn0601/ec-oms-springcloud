@@ -8,12 +8,12 @@ public class GatewayConstant {
 	/**
 	 * 网关登陆url
 	 */
-	public static final String LOGIN_URL = "/login";
+	public static final String LOGIN_URL = "/ec-oms/auth/login";
 
 	/**
 	 * 注册url
 	 */
-	public static final String REGISTER_URL = "/register";
+	public static final String REGISTER_URL = "/ec-oms/auth/register";
 
 	/**
 	 * 从授权中心获取token的url

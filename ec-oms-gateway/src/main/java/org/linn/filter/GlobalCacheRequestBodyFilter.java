@@ -22,6 +22,10 @@ import reactor.core.publisher.Mono;
 @SuppressWarnings("all")
 public class GlobalCacheRequestBodyFilter implements GlobalFilter, Ordered {
 
+	static {
+		System.out.println("最先被执行的全局过滤器");
+	}
+
 	private static final Logger logger = LoggerFactory.getLogger(GlobalCacheRequestBodyFilter.class);
 
 	@Override

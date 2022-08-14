@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import org.apache.commons.lang3.StringUtils;
 import org.linn.constant.GatewayConstant;
+import org.linn.exception.GatewayException;
 import org.linn.rsa.PublicKeyConstant;
 import org.linn.util.GsonUtils;
 import org.linn.vo.JwtToken;
@@ -122,9 +123,16 @@ public class GlobalLoginOrRegisterFilter implements GlobalFilter, Ordered {
 			PublicKeyConstant.AUTHORITY_CENTER_SERVICE_ID
 		);
 
-		logger.info("Nacos Client Info: [{}], [{}], [{}]",
-			serviceInstance.getServiceId(), serviceInstance.getInstanceId(),
-			GsonUtils.getGson().toJson(serviceInstance.getMetadata()));
+		if (null == serviceInstance) {
+			// todo 完善网异常信息处理逻辑
+			throw new GatewayException("从nacos获取服务失败，请检查服务管理");
+		}
+
+		if (logger.isDebugEnabled()) {
+			logger.info("Nacos Client Info: [{}], [{}], [{}]",
+				serviceInstance.getServiceId(), serviceInstance.getInstanceId(),
+				GsonUtils.getGson().toJson(serviceInstance.getMetadata()));
+		}
 
 		String requestUrl = String.format(
 			uriFormat, serviceInstance.getHost(), serviceInstance.getPort()
@@ -134,7 +142,9 @@ public class GlobalLoginOrRegisterFilter implements GlobalFilter, Ordered {
 		UsernamePassword requestBody = GsonUtils.getGson()
 										   .fromJson(parseBodyFromRequest(request), UsernamePassword.class);
 
-		logger.info("login request url and body : [{}], [{}]", requestUrl, GsonUtils.getGson().toJson(requestBody));
+		if (logger.isDebugEnabled()) {
+			logger.info("login request url and body : [{}], [{}]", requestUrl, GsonUtils.getGson().toJson(requestBody));
+		}
 
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);

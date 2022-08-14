@@ -1,0 +1,9 @@
+### 登陆请求
+POST http://192.168.12.230:9000/ec-oms/auth/login
+Content-Type: application/json
+
+{
+  "username": "linn",
+  "password": "linn"
+}
+
