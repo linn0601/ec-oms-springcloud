@@ -24,5 +24,5 @@ public final class PublicKeyConstant {
 	/**
 	 * 授权中心的 service-id
 	 */
-	public static final String AUTHORITY_CENTER_SERVICE_ID = "ec-oms-authority-center";
+	public static final String AUTHORITY_CENTER_SERVICE_ID = "ec-oms-authorization-center";
 }

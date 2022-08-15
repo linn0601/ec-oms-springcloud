@@ -1,8 +1,7 @@
-package org.linn;
+package org.linn.service;
 
 import org.junit.jupiter.api.Test;
 import org.linn.entity.User;
-import org.linn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 

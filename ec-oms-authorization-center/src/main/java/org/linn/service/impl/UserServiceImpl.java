@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	@Override
-	public User save(org.linn.entity.User user) {
+	public User save(User user) {
 		return userRepository.save(user);
 	}
 }

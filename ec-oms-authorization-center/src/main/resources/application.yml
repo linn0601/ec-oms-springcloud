@@ -1,7 +1,7 @@
 server:
   port: 7002
   servlet:
-    context-path: /ec-oms-authorization-center
+    context-path: /ec-oms-authorization-center # 访问端口号后面接口前面需要增加的路径
 
 spring:
   application:
@@ -33,7 +33,9 @@ spring:
         namespace: fa4796a0-246b-4ce7-8391-4652dd8047ef
         enabled: true
         server-addr: localhost:8848
-
+        metadata:
+          management:
+            context-path: ${server.servlet.context-path}/actuator
 management:
   endpoints:
     web:

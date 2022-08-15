@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableJpaAuditing
-public class AuthorityApplication {
+@EnableJpaAuditing // 开启jpa审计
+public class AuthorizationApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AuthorityApplication.class, args);
+		SpringApplication.run(AuthorizationApplication.class, args);
 	}
 }
