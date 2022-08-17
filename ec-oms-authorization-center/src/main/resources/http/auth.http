@@ -1,0 +1,8 @@
+### 注册请求
+POST http://192.168.12.230:7002/ec-oms-authorization-center/auth/register
+Content-Type: application/json
+
+{
+  "username": "linn",
+  "password": "linn"
+}

@@ -1,7 +1,7 @@
 package org.linn.service;
 
 import org.junit.jupiter.api.Test;
-import org.linn.entity.User;
+import org.linn.vo.UsernamePassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -9,13 +9,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 class UserControllerTest {
 
 	@Autowired
-	private UserService userService;
+	private JwtService jwtService;
 
 	@Test
-	void test() {
-		User user = new User();
-		user.setUsername("linn");
-		user.setPassword("chao");
-		userService.save(user);
+	void test() throws Exception {
+
+		UsernamePassword usernamePassword = new UsernamePassword();
+		usernamePassword.setPassword("linn");
+		usernamePassword.setUsername("linn");
+		String token = jwtService.registerUserAndGenerateToken(usernamePassword);
+		System.out.println(token);
 	}
 }

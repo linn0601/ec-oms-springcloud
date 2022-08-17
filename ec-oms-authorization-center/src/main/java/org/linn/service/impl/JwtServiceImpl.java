@@ -80,12 +80,12 @@ public class JwtServiceImpl implements JwtService {
 		User user = userRepository.findByUsername(usernamePassword.getUsername());
 
 		if (user != null) {
-			logger.error("username is registered: [{}]", user.getUsername());
+			return generateToken(user.getUsername(), user.getPassword());
 		}
 
 		User newUser = new User();
 		newUser.setUsername(usernamePassword.getUsername());
-		newUser.setUsername(usernamePassword.getPassword());
+		newUser.setPassword(usernamePassword.getPassword());
 
 		userRepository.save(newUser);
 

@@ -2,6 +2,7 @@ package org.linn.filter;
 
 import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import org.apache.commons.lang3.StringUtils;
@@ -9,6 +10,7 @@ import org.linn.constant.GatewayConstant;
 import org.linn.exception.GatewayException;
 import org.linn.rsa.PublicKeyConstant;
 import org.linn.util.GsonUtils;
+import org.linn.util.TokenParseUtil;
 import org.linn.vo.JwtToken;
 import org.linn.vo.UserInfo;
 import org.linn.vo.UsernamePassword;
@@ -93,8 +95,7 @@ public class GlobalLoginOrRegisterFilter implements GlobalFilter, Ordered {
 		String token = headers.getFirst(PublicKeyConstant.JWT_USER_INFO_KEY);
 		UserInfo userInfo = null;
 		try {
-			// 解析token
-			// userInfo = parse(token);
+			userInfo = TokenParseUtil.parseUserInfoToken(token);
 		}
 		catch (Exception e) {
 			logger.error("parse user info from token error: [{}] ", e.getMessage(), e);
@@ -124,7 +125,6 @@ public class GlobalLoginOrRegisterFilter implements GlobalFilter, Ordered {
 		);
 
 		if (null == serviceInstance) {
-			// todo 完善网异常信息处理逻辑
 			throw new GatewayException("从nacos获取服务失败，请检查服务管理");
 		}
 
@@ -146,17 +146,20 @@ public class GlobalLoginOrRegisterFilter implements GlobalFilter, Ordered {
 			logger.info("login request url and body : [{}], [{}]", requestUrl, GsonUtils.getGson().toJson(requestBody));
 		}
 
-		HttpHeaders httpHeaders = new HttpHeaders();
-		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-		JwtToken token = restTemplate.postForObject(
-			requestUrl, new HttpEntity<>(GsonUtils.getGson().toJson(requestBody), httpHeaders),
-			JwtToken.class
-		);
+		JwtToken token = register(requestUrl, requestBody);
 
 		if (null != token) {
 			return token.getToken();
 		}
 		return null;
+	}
+
+	private JwtToken register(String requestUrl, UsernamePassword requestBody) {
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
+		httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+		HttpEntity<String> entity = new HttpEntity<>(GsonUtils.getGson().toJson(requestBody), httpHeaders);
+		return restTemplate.postForObject(requestUrl, entity, JwtToken.class);
 	}
 
 	/**

@@ -2,6 +2,7 @@ dependencies {
     implementation project(':ec-oms-core')
     implementation group: 'com.alibaba.cloud', name: 'spring-cloud-starter-alibaba-nacos-discovery', version: "${springCloudAlibabaVersion}"
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-gateway'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-sleuth'
 }
 
 test {
