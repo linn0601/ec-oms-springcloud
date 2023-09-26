@@ -1,22 +1,23 @@
 buildscript {
     ext {
-        springCloudVersion = 'Hoxton.SR12'
-        springBootVersion = '2.3.12.RELEASE'
-        springCloudAlibabaVersion = '2.2.8.RELEASE'
+        springCloudVersion = '2021.0.5'
+        springBootVersion = '2.6.13'
+        springCloudAlibabaVersion = '2021.0.5.0'
     }
 
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
-}
 
-plugins {
-    id 'org.springframework.boot' version "${springBootVersion}"
+    repositories {
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+    }
 }
 
 allprojects {
 
-    tasks.withType(JavaCompile) {
+    tasks.withType(JavaCompile).configureEach {
         options.encoding = "UTF-8"
     }
 
@@ -24,13 +25,12 @@ allprojects {
     version '1.0-SNAPSHOT'
 
     repositories {
-        mavenLocal()
         maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
         mavenCentral()
     }
 }
 
-subprojects {
+configure(subprojects.findAll { it.name.startsWith('ec-oms') }) {
     apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'io.spring.dependency-management'
@@ -44,9 +44,7 @@ subprojects {
         implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
         implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
 
-        testImplementation('org.springframework.boot:spring-boot-starter-test') {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
     }
 
     dependencyManagement {
