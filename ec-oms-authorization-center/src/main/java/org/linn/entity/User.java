@@ -2,14 +2,8 @@ package org.linn.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
+
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -24,14 +18,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class User implements Serializable {
 
 	@Id
-	@GeneratedValue(
-		generator = "user_id_generator"
-	)
-	@SequenceGenerator(
-		name = "user_id_generator",
-		sequenceName = "public.user_sequence",
-		allocationSize = 10
-	)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false)
 	private Long id;
 
