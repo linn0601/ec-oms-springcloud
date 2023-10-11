@@ -5,7 +5,7 @@ dependencies {
 
     implementation project(':ec-oms-core')
 
-    runtimeOnly('org.postgresql:postgresql')
+    runtimeOnly('com.mysql:mysql-connector-j')
 }
 
 test {

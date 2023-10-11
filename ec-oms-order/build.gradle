@@ -1,11 +1,10 @@
 dependencies {
     implementation project(':ec-oms-mvc')
+    implementation project(':ec-oms-core')
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-actuator')
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-    runtimeOnly('org.postgresql:postgresql')
-
-    implementation project(':ec-oms-core')
+    runtimeOnly('com.mysql:mysql-connector-j')
 }
 
 test {
