@@ -2,7 +2,6 @@ group 'org.linn'
 version '1.0-SNAPSHOT'
 
 dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-actuator')
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 }
 

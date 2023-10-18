@@ -1,0 +1,27 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /ec-oms-gateway
+
+spring:
+  application:
+    name: ec-oms-gateway
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        namespace: 6f1143ce-9269-4a8b-9040-41b71ff0e86f
+        server-addr: 127.0.0.1:8848
+  main:
+    allow-bean-definition-overriding: true
+
+management:
+  server:
+    port: 19000
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'

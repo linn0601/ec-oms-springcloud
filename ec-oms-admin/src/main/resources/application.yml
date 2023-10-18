@@ -14,12 +14,10 @@ spring:
   cloud:
     nacos:
       discovery:
-        namespace: fa4796a0-246b-4ce7-8391-4652dd8047ef
+        namespace: 6f1143ce-9269-4a8b-9040-41b71ff0e86f
         enabled: true
         server-addr: localhost:8848
         metadata:
-          management:
-            context-path: ${server.servlet.context-path}/actuator
           user.name: linn
           user.password: linn
 
@@ -28,12 +26,12 @@ spring:
     check-template-location: false
 
 management:
-  endpoint:
-    #监控端点配置为全覆盖
-    health:
-      show-details: ALWAYS
-  #暴露所有服务端点
+  server:
+    port: 17001
   endpoints:
     web:
       exposure:
-        include: "*"
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

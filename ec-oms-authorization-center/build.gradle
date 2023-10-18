@@ -5,6 +5,7 @@ dependencies {
     implementation group: 'com.alibaba.cloud', name: 'spring-cloud-starter-alibaba-nacos-discovery', version: "${springCloudAlibabaVersion}"
     implementation('org.springframework.cloud:spring-cloud-starter-sleuth')
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
     implementation('org.springframework.boot:spring-boot-starter-web')
     runtimeOnly('com.mysql:mysql-connector-j')
 }
