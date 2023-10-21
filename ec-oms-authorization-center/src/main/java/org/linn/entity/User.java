@@ -2,6 +2,7 @@ package org.linn.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 import javax.persistence.*;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -19,9 +20,10 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(nullable = false)
+	@Column(name = "id", nullable = false)
 	private Long id;
 
+	@Column(name = "username", nullable = false)
 	private String username;
 
 	private String password;
@@ -29,10 +31,10 @@ public class User implements Serializable {
 	private String extraInfo;
 
 	@CreatedDate
-	private LocalDateTime dateCreated;
+	private Date dateCreated;
 
 	@LastModifiedDate
-	private LocalDateTime dateUpdated;
+	private Date dateUpdated;
 
 	public Long getId() {
 		return id;
@@ -40,22 +42,6 @@ public class User implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public LocalDateTime getDateCreated() {
-		return dateCreated;
-	}
-
-	public void setDateCreated(LocalDateTime dateCreated) {
-		this.dateCreated = dateCreated;
-	}
-
-	public LocalDateTime getDateUpdated() {
-		return dateUpdated;
-	}
-
-	public void setDateUpdated(LocalDateTime dateUpdated) {
-		this.dateUpdated = dateUpdated;
 	}
 
 	public String getUsername() {
@@ -80,5 +66,21 @@ public class User implements Serializable {
 
 	public void setExtraInfo(String extraInfo) {
 		this.extraInfo = extraInfo;
+	}
+
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public Date getDateUpdated() {
+		return dateUpdated;
+	}
+
+	public void setDateUpdated(Date dateUpdated) {
+		this.dateUpdated = dateUpdated;
 	}
 }
