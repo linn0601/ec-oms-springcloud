@@ -21,6 +21,8 @@ public final class PublicKeyConstant {
 	 */
 	public static final String JWT_USER_INFO_KEY = "ec-oms-token";
 
+	public static final String ENCRYPTION_ALGORITHM_RSA = "RSA";
+
 	/**
 	 * 授权中心的 service-id
 	 */

@@ -2,7 +2,7 @@ package org.linn.service;
 
 import org.linn.vo.UsernamePassword;
 
-public interface JwtService {
+public interface JWTService {
 
 	String generateToken(String username, String password) throws Exception;
 

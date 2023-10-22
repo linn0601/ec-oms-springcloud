@@ -56,6 +56,6 @@ public final class TokenParseUtil {
 		X509EncodedKeySpec keySpec = new X509EncodedKeySpec(
 			Base64.getDecoder().decode(PublicKeyConstant.PUBLIC_KEY)
 		);
-		return KeyFactory.getInstance("RSA").generatePublic(keySpec);
+		return KeyFactory.getInstance(PublicKeyConstant.ENCRYPTION_ALGORITHM_RSA).generatePublic(keySpec);
 	}
 }

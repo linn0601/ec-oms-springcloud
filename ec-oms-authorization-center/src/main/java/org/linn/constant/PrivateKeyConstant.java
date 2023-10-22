@@ -11,7 +11,7 @@ public final class PrivateKeyConstant {
 	/**
 	 * 默认token超时时间
 	 */
-	public static final Integer DEFAULT_EXPIRE_DAY = 3600;
+	public static final Integer DEFAULT_EXPIRE_DAY = 1;
 
 	/**
 	 * rsa 私钥

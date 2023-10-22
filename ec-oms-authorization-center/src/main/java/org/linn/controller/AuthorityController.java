@@ -1,7 +1,7 @@
 package org.linn.controller;
 
 import org.linn.annotation.IgnoreResponseAdvice;
-import org.linn.service.JwtService;
+import org.linn.service.JWTService;
 import org.linn.vo.JwtToken;
 import org.linn.vo.UsernamePassword;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthorityController {
 
-	private final JwtService jwtService;
+	private final JWTService jwtService;
 
-	public AuthorityController(JwtService jwtService) {
+	public AuthorityController(JWTService jwtService) {
 		this.jwtService = jwtService;
 	}
 

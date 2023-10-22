@@ -26,13 +26,25 @@ spring:
         show_sql: true
         format_sql: true
     show-sql: true
-
   cloud:
     nacos:
       discovery:
         enabled: true
         server-addr: 127.0.0.1:8848
         namespace: 6f1143ce-9269-4a8b-9040-41b71ff0e86f
+feign:
+  # 开启压缩
+  compression:
+    request:
+      enabled: true
+      min-request-size: 1024
+      mime-types: application/xml,application/json
+    response:
+      enabled: true
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
 
 management:
   server:

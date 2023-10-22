@@ -1,8 +1,8 @@
 package org.linn.service;
 
-import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.linn.entity.User;
+import org.linn.util.GsonUtils;
 import org.linn.vo.UsernamePassword;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ class UserControllerTest {
 	public static final Logger logger = LoggerFactory.getLogger(UserControllerTest.class);
 
 	@Autowired
-	private JwtService jwtService;
+	private JWTService jwtService;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -29,7 +29,7 @@ class UserControllerTest {
 //		user.setExtraInfo("{}");
 //		userRepository.save(user);
 		Optional<User> user = userRepository.findById(2L);
-		logger.info("user: {}", new Gson().toJson(user.get()));
+		logger.info("user: {}", GsonUtils.getGson().toJson(user.get()));
 	}
 
 	@Test
