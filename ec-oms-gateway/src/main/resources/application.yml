@@ -15,6 +15,11 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
+nacos:
+  gateway:
+    data-id: ec-oms-gateway-router
+    group-id: ec-oms-gateway
+
 management:
   server:
     port: 19000

@@ -44,11 +44,15 @@ public class GlobalLoginOrRegisterFilter implements GlobalFilter, Ordered {
 	/**
 	 * 注册中新客户端，可以从注册中心获取实例信息
 	 */
-	@Autowired
-	private LoadBalancerClient loadBalancerClient;
+	private final LoadBalancerClient loadBalancerClient;
 
-	@Autowired
-	private RestTemplate restTemplate;
+	private final RestTemplate restTemplate;
+
+	public GlobalLoginOrRegisterFilter(LoadBalancerClient loadBalancerClient,
+									   RestTemplate restTemplate) {
+		this.loadBalancerClient = loadBalancerClient;
+		this.restTemplate = restTemplate;
+	}
 
 	/**
 	 * 登陆 注册 鉴权
