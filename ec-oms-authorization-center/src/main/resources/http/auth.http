@@ -6,3 +6,14 @@ Content-Type: application/json
   "username": "linn",
   "password": "123"
 }
+
+
+
+### 登录请求
+POST http://localhost:7002/ec-oms-authorization-center/auth/token
+Content-Type: application/json
+
+{
+  "username": "linn1",
+  "password": "123"
+}
