@@ -65,7 +65,7 @@ public class DynamicRouteServiceLister {
 	 * Bean在容器中构建完成后会执行init() dateId、groupId
 	 */
 	@SuppressWarnings("UnstableApiUsage")
-	@PostConstruct
+	@PostConstruct // bean在构造完成之后
 	public void init() {
 		try {
 			configService = initConfigService();

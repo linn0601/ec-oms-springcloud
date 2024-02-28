@@ -1,0 +1,24 @@
+### 静态路由
+gateway:
+  routes:
+    - id: user-service # 路由id
+      uri: lb://user-service/user/{id}
+      predicates:
+        - Path=/user/{id}
+
+### nacos rout配置
+[
+    {
+        "id": "ec-nacos-client",
+        "order": 0,
+        "predicates" : [
+            {
+                "args": {
+                    "pattern": "/ec-oms/ec-nacos-client/a/**"
+                },
+                "name": "Path"
+            }
+        ],
+        "uri": "lb://ec-nacos-client"
+    }
+]
