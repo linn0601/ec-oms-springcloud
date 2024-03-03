@@ -1,0 +1,26 @@
+[
+  {
+    "id": "ec-nacos-client",
+    "order": 0,
+    "predicates": [
+      {
+        "args": {
+          "pattern": "/ec-oms/ec-oms-authorization-center/**"
+        },
+        "name": "Path"
+      }
+    ],
+    "uri": "lb://ec-oms-authorization-center",
+    "filters": [
+      {
+        "name": "HeaderToken"
+      },
+      {
+        "name": "StripPrefix",
+        "args": {
+          "parts": "1"
+        }
+      }
+    ]
+  }
+]
